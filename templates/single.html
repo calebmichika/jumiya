@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single item</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="..//static/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+   <div class="container-fluid">
+
+    <!-- include nav bar -->
+    {% include 'navbar.html' %}
+
+    <section class="row">
+        <div class="col-md-4 p-5">
+            <img src="../static/images/ {{ product[5] }}" alt="advert" class="w-100">
+        </div>
+
+        <div class="col-md-8 p-5">
+
+            <!-- title -->
+            <h3 class="text-warning">{{ product[1] }}</h3>
+            <br>
+            <p>{{product[2]}}</p>
+            <br>
+            <b class="text-danger">Product category: {{product[4]}}</b> <br>
+            <b class="text-success">Product Quantity</b><br>
+            <b class="text-success">Product Cost</b><br>
+            <button type="button" class="btn btn-success ">Buy Now</button>
+
+            
+        </div>
+
+    </section>
+
+
+   </div>
+</body>
+</html>

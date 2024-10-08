@@ -38,9 +38,23 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
+          <!-- check if session['key'] exist -->
+          <!-- if it exists the user should not see the login and register buttons -->
+          <!-- user is suppposed to see their user email and logout button  -->
+          {% if session['key'] %}
+          <!-- user exists  -->
+              <b class="text-info"> Welcome, {{ session['key'] }}</b>    
+              <a href="/logout" class="btn btn-outline-info">logout</a>
+          {% else %}
+          <!-- user does not exist  -->
+              <a href="/login" class="btn btn-outline-info">login</a>
+              <a href="/register" class="btn btn-outline-info">register</a>
+          
+          {% endif %}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-          <button type="button" class="btn btn-primary">register</button>
+          
+          
         </form>
       </div>
     </div>

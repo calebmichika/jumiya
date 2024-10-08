@@ -1,9 +1,12 @@
 from flask import *
 import pymysql
 from functions import *
-
+from mpesa import *
 
 app = Flask (__name__)
+
+# session key
+app.secret_key = "today@90"
 
 @app.route ('/')
 def homepage ():
@@ -129,34 +132,34 @@ def about ():
 @app.route('/register',methods = ['POST' , 'GET'])
 def register ():
     if request.method == 'POST':
-user_name = request.form.get('user_name')
-email = request.form.get('email')
-gender = request.form.get('gender')
-phone = request.form.get('phone')
-password = request.form.get('password')
-# validate user pasword
-# Response = checkpassword(password)
-# if Response == True :
-# # password met all the cnditions
+        user_name = request.form.get('user_name')
+        email = request.form.get('email')
+        gender = request.form.get('gender')
+        phone = request.form.get('phone')
+        password = request.form.get('password')
+        # validate user pasword
+        # Response = checkpassword(password)
+        # if Response == True :
+        # # password met all the cnditions
 
-# else:
-# # password didnot meet all conditions
-# return render_template ('register.html', message = "Reistered successfully")
+        # else:
+        # # password didnot meet all conditions
+        # return render_template ('register.html', message = "Reistered successfully")
 
- 
+        
 
- 
+        
 
-# connect to db
-connection = pymysql.connect(host='localhost', user='root', password='', database='Jamia LTD')
-cursor = connection.cursor()
-sql = "insert into users (user_name, email,gender, phone,password) values (%s, %s, %s,%s,%s)"
-data = (user_name, email,gender, phone,password)
-cursor.execute(sql, data)
-connection.commit()
-    return render_template ('register.html', message = "Reistered successfully")
-else:
-    return render_template('register.html',error = 'Please register')
+        # connect to db
+        connection = pymysql.connect(host='localhost', user='root', password='', database='Jamia LTD')
+        cursor = connection.cursor()
+        sql = "insert into users (user_name, email,gender, phone,password) values (%s, %s, %s,%s,%s)"
+        data = (user_name, email,gender, phone,password)
+        cursor.execute(sql, data)
+        connection.commit()
+        return render_template ('register.html', message = "Reistered successfully")
+    else:
+        return render_template('register.html',error = 'Please register')
 
 
 
@@ -182,51 +185,35 @@ def login ():
         # it means the usernhame and password does not exist
             return render_template ("login.html", error = " Invalid login credentials")
         else:
-            return render_template("login.html", message = "login successful")
+            session['key'] = email
+
+        # If GET request, show the registration form
+            return redirect("/")
+            
+    else:
+
+        return render_template ('login.html')
 
 
+    # mpesa
+    # implement STK PUSH
+@app.route('/mpesa', methods = ['POST'])
+def mpesa():
+    phone = request.form["phone"]
+    amount = request.form["amount"]
 
+    # use mpesa_payment function mpesa.py
+    # it accepts the phone and amount as arguments 
+    mpesa_payment(amount, phone)
 
-
-
-
+    return '<h1>Please Complete Payment in Your Phone</h1>' \
+    '<a href="/" class="btn btn-dark btn-sm" > Go Back To Products </a> '
 
 
 @app.route ('/logout')
-def logout ():
-    return "this is logout page"
+def logout (): 
+    session.clear()
+    return redirect("/login")
 
 if __name__ == '__main__':
     app.run(debug=True,port=3000)
-
-# ######
-
-# from flask import Flask, render_template, request, redirect, url_for
-
-# app = Flask(__name__)
-
-# # In-memory storage for demonstration (replace with database logic)
-# users = []
-
-# @app.route('/')
-# def home():
-#     return render_template('index.html') 
-
-# @app.route('/register', methods=['POST'], ['GET'])
-# def register():
-#     username = request.form['username']
-#     email = request.form['email']
-#     gender = request.form['gender']
-#     phone = request.form['phone']
-#     password = request.form['password']
-
-    # # validate user password
-    # response = checkpasswordvalidity(password)  
-    # if response == True:
-    # # password met all conditions
-
-    # else:
-    #     # password did not meet all conditions
-    # return render_template ("register.html", message = "registration successful")
-
-    

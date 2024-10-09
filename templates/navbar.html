@@ -11,7 +11,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="/upload">upload</a>
+            <a class="nav-link" href="/upload" >Upload</a>
           </li>
 
           <li class="nav-item">
@@ -19,23 +19,9 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/uploadfashion">upload fashion</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
+            <a class="nav-link" href="/uploadfashion">Upload Fashion</a>
+          </li>        
+         
         </ul>
         <form class="d-flex" role="search">
           <!-- check if session['key'] exist -->
@@ -44,11 +30,11 @@
           {% if session['key'] %}
           <!-- user exists  -->
               <b class="text-info"> Welcome, {{ session['key'] }}</b>    
-              <a href="/logout" class="btn btn-outline-info">logout</a>
+              <a href="/logout" class="btn btn-outline-info">Logout</a>
           {% else %}
           <!-- user does not exist  -->
-              <a href="/login" class="btn btn-outline-info">login</a>
-              <a href="/register" class="btn btn-outline-info">register</a>
+              <a href="/login" class="btn btn-outline-info">Login</a>
+              <a href="/register" class="btn btn-outline-info">Register</a>
           
           {% endif %}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

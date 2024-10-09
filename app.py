@@ -1,4 +1,4 @@
-from flask import *
+from flask import *calebmichika
 import pymysql
 from functions import *
 from mpesa import *
@@ -11,7 +11,7 @@ app.secret_key = "today@90"
 @app.route ('/')
 def homepage ():
 #    connect to DB
-    connection = pymysql.connect(host='localhost', user='root', password='', database='jumiya')
+    connection = pymysql.connect(host='calebmichika.mysql.pythonanywhere-services.com', user='calebmichika', password='caleb0706K', database='calebmichika$default')
     sql = "select * from products where product_category = 'phones' "
     sql1 = "select * from products where product_category = 'electronics' "
     sql2  = "select * from products where product_category = 'beauty' "
@@ -57,7 +57,7 @@ def homepage ():
 def singleitem(product_id):
 
     # connection to DB
-    connection = pymysql.connect(host='localhost', user='root', password='', database='jumiya')
+    connection = pymysql.connect(host='calebmichika.mysql.pythonanywhere-services.com', user='calebmichika', password='caleb0706K', database='calebmichika$default')
     
 
     # create sql query
@@ -87,7 +87,7 @@ def upload():
         product_image_name.save('static/images/' + product_image_name.filename)
 
         # connect to DB
-        connection = pymysql.connect(host='localhost', user='root', password='', database='jumiya')
+        connection = pymysql.connect(host='calebmichika.mysql.pythonanywhere-services.com', user='calebmichika', password='caleb0706K', database='calebmichika$default')
 
         # create a cursor
         cursor = connection.cursor()
@@ -151,7 +151,7 @@ def register ():
         
 
         # connect to db
-        connection = pymysql.connect(host='localhost', user='root', password='', database='Jamia LTD')
+        connection = pymysql.connect(host='calebmichika.mysql.pythonanywhere-services.com', user='calebmichika', password='caleb0706K', database='calebmichika$default')
         cursor = connection.cursor()
         sql = "insert into users (user_name, email,gender, phone,password) values (%s, %s, %s,%s,%s)"
         data = (user_name, email,gender, phone,password)
@@ -169,7 +169,7 @@ def login ():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        connection = pymysql.connect(host='localhost', user='root', password='', database='jumiya')
+        connection = pymysql.connect(host='calebmichika.mysql.pythonanywhere-services.com', user='calebmichika', password='caleb0706K', database='calebmichika$default')
         cursor = connection.cursor()
 
         # check if user with email exists in database
